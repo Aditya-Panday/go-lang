@@ -204,3 +204,106 @@ Example:
 
 
 
+
+
+---
+
+# Variables in Go - Kitne Tarike Hain?
+
+Go mein `let` aur `const` JavaScript wale nahi hote. Go ke 3 tarike hain:
+
+## 1. var - Explicit Declaration
+  var name string = "Rahul"
+  var age int = 25
+  var isActive bool        // zero value milegi (false)
+
+- Function ke andar aur bahar dono jagah use kar sakte ho
+- Type likhna zaroori hai (ya value se detect ho)
+
+## 2. := Short Declaration (Sabse zyada use hota hai)
+  name := "Rahul"          // type automatically detect hoti hai
+  age := 25
+  price := 99.99
+
+- Sirf function ke andar use hota hai
+- JavaScript ke `let` jaisa samjho
+- Declare kiya variable use karna ZARURI hai, warna compile error
+
+## 3. const - Constant (Value change nahi hoti)
+  const Pi = 3.14159
+  const AppName = "MyApp"
+  const MaxLimit = 100
+
+- JavaScript ke `const` se same concept
+- Sirf primitive values ke liye: string, int, float, bool
+- Slice, Map, Struct const nahi ban sakte
+
+---
+
+# Const Grouping
+
+Jab multiple constants ek saath declare karne ho, toh group mein likhte hain:
+
+  const (
+      StatusOK       = 200
+      StatusNotFound = 404
+      StatusError    = 500
+  )
+
+  const (
+      AppName    = "MyApp"
+      AppVersion = "1.0.0"
+      MaxUsers   = 1000
+  )
+
+- Ek const block mein sab related constants rakhte hain
+- Clean aur readable code ke liye use hota hai
+- Var grouping bhi same tarah hoti hai:
+
+  var (
+      name string = "Rahul"
+      age  int    = 25
+      city string = "Delhi"
+  )
+
+---
+
+# Go vs JavaScript - Variable Comparison
+
+| JavaScript    | Go              | Notes                              |
+|---------------|-----------------|------------------------------------|
+| let x = 5     | x := 5          | Short declaration, function andar  |
+| var x = 5     | var x int = 5   | Explicit, anywhere                 |
+| const x = 5   | const x = 5     | Same concept                       |
+| No equivalent | var grouping    | Multiple vars ek block mein        |
+
+Important Rules:
+- := se declare variable use karna ZARURI hai warna compile error
+- var global level pe bhi chal sakta hai, := sirf function ke andar
+- const mein type optional hai, Go khud detect kar leta hai
+
+
+
+
+
+---
+
+# Loops in Go
+
+Go mein sirf `for` loop hota hai - while aur do-while alag se nahi hote.
+Lekin `for` ko alag tarike se likh ke same kaam karte hain.
+
+---
+
+# Loops Quick Comparison: Go vs JavaScript
+
+| Loop Type     | Go Syntax                      | JS Equivalent          |
+|---------------|--------------------------------|------------------------|
+| Basic for     | for i := 0; i < 5; i++        | for(let i=0; i<5; i++) |
+| While style   | for n <= 5                     | while(n <= 5)          |
+| Infinite      | for { ... break }              | while(true) { break }  |
+| Array/Slice   | for i, v := range slice        | forEach / for...of     |
+| Map           | for k, v := range map          | for...in               |
+| String        | for i, char := range str       | for...of               |
+| Skip          | continue                       | continue               |
+| Stop          | break                          | break                  |
