@@ -1,0 +1,206 @@
+# Go kya hai?
+
+Go (ya Golang) ek statically typed, compiled programming language hai jo Google ne 2009 mein banai thi.
+Iska main focus hai simplicity, performance, aur built-in concurrency support.
+
+---
+
+# Go vs Node.js - Key Differences
+
+## 1. Language Type
+- Go: Compiled language hai. Code seedha machine code mein convert hota hai.
+- Node.js: JavaScript runtime hai jo V8 engine pe chalta hai (interpreted/JIT compiled).
+
+## 2. Performance
+- Go: Bahut fast hai kyunki directly compile hota hai. CPU-heavy tasks ke liye better.
+- Node.js: I/O operations ke liye fast hai, lekin CPU-intensive kaam mein Go se peeche.
+
+## 3. Concurrency
+- Go: Goroutines use karta hai jo lightweight threads hain. Lakho goroutines ek saath chal sakti hain.
+- Node.js: Single-threaded hai, event loop use karta hai. Async/await aur callbacks se concurrency handle karta hai.
+
+## 4. Typing
+- Go: Statically typed hai - types compile time pe check hoti hain.
+- Node.js (JavaScript): Dynamically typed hai - types runtime pe check hoti hain.
+  (TypeScript se static typing add kar sakte ho Node mein)
+
+## 5. Error Handling
+- Go: Explicit error handling karta hai - functions multiple values return karte hain (value, error).
+- Node.js: try/catch ya callbacks ke through error handle hote hain.
+
+## 6. Use Cases
+- Go: Microservices, system tools, cloud infrastructure, high-performance APIs ke liye popular.
+- Node.js: Web servers, real-time apps (chat, streaming), REST APIs ke liye popular.
+
+## 7. Ecosystem
+- Go: Standard library bahut powerful hai, kam external dependencies chahiye.
+- Node.js: npm ka huge ecosystem hai, almost har cheez ke liye package milta hai.
+
+## 8. Deployment
+- Go: Single binary compile hoti hai, deploy karna bahut aasan hai.
+- Node.js: Node runtime install karna padta hai deployment machine pe.
+
+---
+
+# Summary
+
+Agar tumhe high performance, concurrency, aur simple deployment chahiye - Go better choice hai.
+Agar tumhe fast development, huge package ecosystem, aur JavaScript familiarity chahiye - Node.js better hai.
+
+---
+
+#  Five reasons to choose go lang.
+
+    # 1. Build time
+    # 2. Fast startup
+    # 3. Performance And Efficiency
+    # 4. Concurrency model
+    # 5. Static typing and compilation.
+    
+
+#Installation
+
+1. sudo apt install golang-go
+2. go version
+
+
+3. create file like main.go
+
+4. Write first program. 
+
+    package main
+
+    import "fmt"
+
+    func main() {
+        fmt.Println("Hello Aditya")
+    }
+
+
+5. start --> go run main.go    /     output ---> Hello Aditya
+
+6. create build --> go build main.go
+
+7. run build ---> ./main
+
+
+# Go Data Types
+
+## Basic Types
+
+| Type                          | Description                        | Example       |
+|-------------------------------|------------------------------------|---------------|
+| int, int8, int16, int32, int64 | Integer numbers                   | 42, -10       |
+| uint, uint8...uint64          | Unsigned integers (no negative)    | 0, 255        |
+| float32, float64              | Decimal numbers                    | 3.14          |
+| complex64, complex128         | Complex numbers                    | 3+4i          |
+| string                        | Text                               | "hello"       |
+| bool                          | True/False                         | true, false   |
+| byte                          | uint8 ka alias (0-255)             | 255           |
+| rune                          | int32 ka alias (Unicode character) | 'A'           |
+
+Example:
+  var i int = 42
+  var f float64 = 3.14
+  var b bool = true
+  var s string = "Go Lang"
+  var r rune = 'A'   // string(r) se character milta hai
+  var by byte = 255
+
+---
+
+# Array
+
+- Fixed size hota hai, declaration ke time size define karna padta hai.
+- Rarely use hota hai, zyada tar Slice use karte hain.
+
+Example:
+  var arr [3]string = [3]string{"Apple", "Banana", "Mango"}
+  fmt.Println(arr[0])     // Apple
+  fmt.Println(len(arr))   // 3
+
+---
+
+# Slice (Go ka main "array")
+
+- Dynamic size, JavaScript array jaisa.
+- append() se element add karo.
+- Sub-slice bhi nikal sakte ho.
+
+Example:
+  fruits := []string{"Apple", "Banana", "Mango"}
+  fruits = append(fruits, "Grapes")   // element add karo
+  fmt.Println(fruits[1])              // Banana
+  fmt.Println(fruits[1:3])            // sub-slice: [Banana Mango]
+
+---
+
+# Map (Key-Value pairs)
+
+- JavaScript object ya Python dictionary jaisa.
+- map[keyType]valueType syntax.
+- Key exist karti hai ya nahi, do values return hoti hain.
+
+Example:
+  person := map[string]string{
+      "name": "Rahul",
+      "city": "Delhi",
+  }
+  fmt.Println(person["name"])         // Rahul
+
+  person["email"] = "rahul@mail.com"  // nayi key add karo
+
+  val, exists := person["phone"]      // key check karo
+  // exists = false, val = ""
+
+---
+
+# Struct (Go ka "Object")
+
+- Go mein classes nahi hoti, struct use karte hain.
+- Custom type banao apne fields ke saath.
+- Fields ko dot notation se access karo.
+
+Example:
+  type Person struct {
+      Name string
+      Age  int
+      City string
+  }
+
+  p1 := Person{Name: "Amit", Age: 28, City: "Mumbai"}
+  fmt.Println(p1.Name)   // Amit
+  p1.City = "Pune"       // field update
+
+---
+
+# Slice of Structs (Array of Objects)
+
+- Slice aur Struct combine karke array of objects jaisa banate hain.
+- range se loop karo.
+
+Example:
+  people := []Person{
+      {Name: "Rohit", Age: 22, City: "Jaipur"},
+      {Name: "Priya", Age: 25, City: "Bangalore"},
+  }
+  for _, p := range people {
+      fmt.Printf("%s is %d years old from %s\n", p.Name, p.Age, p.City)
+  }
+
+---
+
+# Quick Comparison: Go vs JavaScript
+
+| Concept        | JavaScript          | Go                    |
+|----------------|---------------------|-----------------------|
+| Array          | []                  | []int, []string (Slice)|
+| Object         | {}                  | struct                |
+| Key-Value      | {} / Map            | map[string]string     |
+| Dynamic Array  | arr.push()          | append(slice, val)    |
+| Loop           | for...of            | for _, v := range     |
+| Null check     | undefined check     | val, ok := map[key]   |
+
+
+
+
