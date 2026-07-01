@@ -18,9 +18,9 @@ func main() {
 	var f float64 = 3.14
 	var b bool = true
 	var s string = "Go Lang"
-	var r rune = 'A'       // Unicode character (int32)
-	var by byte = 255      // uint8
-	var c complex64 = 3+4i // complex number
+	var r rune = 'A'         // Unicode character (int32)
+	var by byte = 255        // uint8
+	var c complex64 = 3 + 4i // complex number
 
 	fmt.Println("--- Basic Types ---")
 	fmt.Println("int:", i)
@@ -30,6 +30,13 @@ func main() {
 	fmt.Println("rune:", r, "->", string(r))
 	fmt.Println("byte:", by)
 	fmt.Println("complex:", c)
+
+	// =====================
+	// short Hand Syntax
+	// =====================
+
+	name := "golang"
+	println(name)
 
 	// =====================
 	// Array - fixed size
@@ -99,4 +106,22 @@ func main() {
 	for _, p := range people {
 		fmt.Printf("%s is %d years old from %s\n", p.Name, p.Age, p.City)
 	}
+
+	println("const groupping----")
+	println("Server running at", host, "on port", port)
 }
+
+// Important rules Go mein:
+
+// := se declare kiya variable use karna zaruri hai, warna compile error aata hai
+// var se global level pe bhi declare kar sakte ho, := sirf function ke andar
+// const mein type likhna optional hai, Go khud detect kar leta hai
+// const ko aap function ke bahar bhi declare kr skte ho but := shorthand ko nhi kr skte ho.
+
+const age = 30
+
+// constant groupping
+const (
+	port = 5000
+	host = "localhost:3000"
+)
