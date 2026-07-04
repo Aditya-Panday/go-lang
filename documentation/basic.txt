@@ -307,3 +307,61 @@ Lekin `for` ko alag tarike se likh ke same kaam karte hain.
 | String        | for i, char := range str       | for...of               |
 | Skip          | continue                       | continue               |
 | Stop          | break                          | break                  |
+
+
+---
+
+# Array vs Slice - Kya Difference Hai?
+
+## Array
+- Fixed size hoti hai - ek baar declare karo, size change nahi hoti
+- Size type ka part hoti hai: [3]int aur [5]int alag types hain
+- Rarely use hoti hai real projects mein
+
+  arr := [3]int{1, 2, 3}
+  // arr mein 4th element add nahi kar sakte
+
+## Slice
+- Dynamic size - jitne chahiye utne elements add karo
+- append() se grow hoti hai automatically
+- Real projects mein mostly yahi use hoti hai
+
+  s := []int{1, 2, 3}
+  s = append(s, 4, 5)  // size badh gayi
+
+---
+
+## Side by Side Comparison
+
+| Feature          | Array                  | Slice                        |
+|------------------|------------------------|------------------------------|
+| Size             | Fixed (compile time)   | Dynamic (runtime mein badhe) |
+| Declaration      | [3]int{1,2,3}          | []int{1,2,3}                 |
+| Size change      | Nahi ho sakti          | append() se ho sakti         |
+| len()            | Hamesha fixed          | Current elements             |
+| cap()            | Same as len            | Allocated memory             |
+| Use in practice  | Rare                   | Almost always                |
+| Pass to function | Value copy hoti hai    | Reference pass hoti hai      |
+
+---
+
+## Important: Slice Array ka Reference Hota Hai
+
+  arr := [5]int{1, 2, 3, 4, 5}
+  s := arr[1:4]       // arr ka slice banaya
+
+  s[0] = 999          // slice change kiya
+  fmt.Println(arr)    // [1 999 3 4 5] - original array bhi change ho gayi!
+
+Isliye agar independent copy chahiye toh copy() use karo:
+
+  src := []int{1, 2, 3}
+  dst := make([]int, len(src))
+  copy(dst, src)      // ab dst alag hai, src se connected nahi
+
+---
+
+## Kab Array, Kab Slice Use Karein?
+
+- Array: Jab size bilkul fixed ho aur kabhi change na ho (e.g. week ke 7 din)
+- Slice: Baaki sabhi cases mein - dynamic data, API responses, DB records, etc.
